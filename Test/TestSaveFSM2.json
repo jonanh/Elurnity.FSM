@@ -1,0 +1,112 @@
+{
+    "defaultState": {
+        "name": "0",
+        "$id": "1"
+    },
+    "states": [
+        {
+            "$ref": "1"
+        },
+        {
+            "name": "1",
+            "$id": "3"
+        },
+        {
+            "name": "2",
+            "$id": "4"
+        },
+        {
+            "name": "Any",
+            "$id": "5"
+        }
+    ],
+    "parameters": [
+        {
+            "name": "Reset",
+            "$type": "FSM.Trigger"
+        }
+    ],
+    "transitions": [
+        {
+            "Key": {
+                "$ref": "1"
+            },
+            "Value": [
+                {
+                    "name": "0 -> 1",
+                    "to": {
+                        "$ref": "3"
+                    },
+                    "conditions": [
+                        {
+                            "timeout": 2.0,
+                            "name": null,
+                            "$type": "FSM.TimeoutCondition"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Key": {
+                "$ref": "3"
+            },
+            "Value": [
+                {
+                    "name": "1 -> 2",
+                    "to": {
+                        "$ref": "4"
+                    },
+                    "conditions": [
+                        {
+                            "timeout": 2.0,
+                            "name": null,
+                            "$type": "FSM.TimeoutCondition"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Key": {
+                "$ref": "4"
+            },
+            "Value": [
+                {
+                    "name": "2 -> 0",
+                    "to": {
+                        "$ref": "1"
+                    },
+                    "conditions": [
+                        {
+                            "timeout": 2.0,
+                            "name": null,
+                            "$type": "FSM.TimeoutCondition"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Key": {
+                "$ref": "5"
+            },
+            "Value": [
+                {
+                    "name": "Any -> 0",
+                    "to": {
+                        "$ref": "1"
+                    },
+                    "conditions": [
+                        {
+                            "param": "Reset",
+                            "name": null,
+                            "$type": "FSM.TriggerCondition"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "name": null
+}
