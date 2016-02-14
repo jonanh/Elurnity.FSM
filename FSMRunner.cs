@@ -7,8 +7,6 @@ namespace FSM
 {
     public class FSMRunner : MonoBehaviour
     {
-        public TextAsset fsmAsset;
-
         private Injector injector = new Injector();
 
         private FSM _fsm;
@@ -16,35 +14,28 @@ namespace FSM
         {
             get
             {
+                if (_fsm == null)
+                {
+                    _fsm = new FSM();
+                }
                 return _fsm;
             }
-
+            
             set
             {
+                _fsm = value;
+                
                 if (value != null)
                 {
-                    _fsm = value;
-
+                    container[typeof(FSM)] = fsm;
+                    
                     injector.inject(fsm, container);
 
                     fsm.enter();
                 }
             }
         }
-
-        protected void Start()
-        {
-            Load();
-        }
         
-        public virtual void Load()
-        {
-            if (fsmAsset != null)
-            {
-                fsm = fsmAsset.fsm();
-            }
-        }
-
         private Container _container;
         public Container container
         {
@@ -56,8 +47,13 @@ namespace FSM
                 }
                 return _container;
             }
+            
+            set
+            {
+                _container = value;
+            }
         }
-
+        
         protected virtual Container newContainer()
         {
             return new Container()

@@ -13,10 +13,16 @@ namespace Tests
         public Text prefab;
         Text[] texts;
 
-        IEnumerator Start()
+        protected virtual void Start()
         {
+            StartCoroutine(createVisualization());
+        }
+        
+        protected IEnumerator createVisualization()
+        {
+            // Delay one frame
             yield return null;
-
+            
             List<Text> listTexts = new List<Text>();
 
             foreach (var state in fsm.states)
@@ -30,6 +36,7 @@ namespace Tests
             }
 
             texts = listTexts.ToArray();
+
         }
 
         void Update()
@@ -61,6 +68,11 @@ namespace Tests
                     _fsm = GetComponent<FSMRunner>().fsm;
                 }
                 return _fsm;
+            }
+            
+            set
+            {
+                GetComponent<FSMRunner>().fsm = value;
             }
         }
 
