@@ -22,13 +22,13 @@ namespace FSM
         {
         }
     }
-    
+
     public class DelegateState : State
     {
         public Action onEnter;
         public Action onUpdate;
         public Action onExit;
-        
+
         public override void enter()
         {
             if (onEnter != null)
@@ -53,7 +53,7 @@ namespace FSM
             }
         }
     }
-    
+
     public class TriggerEventState<T> : State where T : Events.Event
     {
         T evt = null;
@@ -62,29 +62,29 @@ namespace FSM
         {
             gameobject.Trigger(evt);
         }
-        
+
         public GameObject gameobject { get; set; }
     }
-    
+
     public class LoadSceneState : State
     {
         public string sceneAssetBundle;
         public string levelName;
 
         public bool isAdditive = true;
-        
+
         public override void enter()
         {
-            AssetBundleLoadOperation request = AssetBundleManager.LoadLevelAsync(sceneAssetBundle, levelName, isAdditive);
+            AssetBundleManager.LoadLevelAsync(sceneAssetBundle, levelName, isAdditive);
         }
     }
-    
+
     public class UnloadSceneState : State
     {
         public string levelName;
 
         public bool isAdditive = true;
-        
+
         public override void enter()
         {
             SceneManager.UnloadScene(levelName);
