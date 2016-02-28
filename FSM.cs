@@ -209,7 +209,7 @@ namespace FSM
                     switched = evalTransitions(currentState);
                 }
 
-                if (currentState != null && visitedBelowMax(currentState))
+                if (currentState != null && !visitedBelowMax(currentState))
                 {
                     break;
                 }
