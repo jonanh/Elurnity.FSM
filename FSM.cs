@@ -240,14 +240,15 @@ namespace FSM
                     break;
                 }
             }
-            
-            foreach (Trigger trigger in triggers)
-            {
-                trigger.value = false;
-            }
+
             
             if (transition != null)
             {
+                foreach (Trigger trigger in triggers)
+                {
+                    trigger.value = false;
+                }
+
                 currentState = transition.to;
                 return true;
             }
