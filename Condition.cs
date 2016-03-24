@@ -153,12 +153,12 @@ namespace FSM
 
         public override void enter()
         {
-            eventListener.Add<T>(OnEvent);
+            eventListener.On<T>(OnEvent);
         }
 
         public override void exit()
         {
-            eventListener.Add<T>(OnEvent);
+            eventListener.On<T>(OnEvent);
         }
         
         private void OnEvent(T evt)
