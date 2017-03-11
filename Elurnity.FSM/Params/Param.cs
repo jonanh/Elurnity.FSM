@@ -1,13 +1,11 @@
-﻿using System;
-using FullSerializer;
-
-namespace FSM
+﻿
+namespace Elurnity.FSM
 {
     public abstract class Param
     {
         public string name;
     }
-    
+
     public class Param<T> : Param, IFSM
     {
         private T _value;
@@ -30,8 +28,7 @@ namespace FSM
                 }
             }
         }
-        
-        [fsIgnore]
+
         public FSM fsm { get; set; }
     }
 

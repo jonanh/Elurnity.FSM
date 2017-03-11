@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EE8874F4-5AB8-45DE-9E58-CC0812A0B14B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Elurnity.FSM.Extensions</RootNamespace>
+    <AssemblyName>Elurnity.FSM.Extensions</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Conditions\EventCondition.cs" />
+    <Compile Include="Conditions\TimeoutCondition.cs" />
+    <Compile Include="States\TriggerState.cs" />
+    <Compile Include="InjectIntoFSM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Conditions\" />
+    <Folder Include="States\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Elurnity.FSM\Elurnity.FSM.csproj">
+      <Project>{5271FE25-1AA9-4C0E-B79C-5678B108AC9C}</Project>
+      <Name>Elurnity.FSM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

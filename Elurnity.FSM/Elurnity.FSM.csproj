@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5271FE25-1AA9-4C0E-B79C-5678B108AC9C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Elurnity.FSM</RootNamespace>
+    <AssemblyName>Elurnity.FSM</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Conditions\TriggerCondition.cs" />
+    <Compile Include="Conditions\Condition.cs" />
+    <Compile Include="States\State.cs" />
+    <Compile Include="Transitions\Transition.cs" />
+    <Compile Include="Params\Param.cs" />
+    <Compile Include="FSM.cs" />
+    <Compile Include="IFSM.cs" />
+    <Compile Include="States\DelegateState.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Conditions\" />
+    <Folder Include="States\" />
+    <Folder Include="Transitions\" />
+    <Folder Include="Params\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

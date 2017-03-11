@@ -1,5 +1,5 @@
-﻿
-namespace FSM
+
+namespace Elurnity.FSM
 {
     public sealed class Transition
     {
@@ -11,7 +11,7 @@ namespace FSM
         {
             foreach (var condition in conditions)
             {
-                if (condition.eval())
+                if (condition.Eval())
                 {
                     return true;
                 }
@@ -23,7 +23,7 @@ namespace FSM
         {
             foreach (var condition in conditions)
             {
-                condition.enter();
+                condition.Enter();
             }
         }
 
@@ -31,7 +31,7 @@ namespace FSM
         {
             foreach (var condition in conditions)
             {
-                condition.exit();
+                condition.Exit();
             }
         }
     }

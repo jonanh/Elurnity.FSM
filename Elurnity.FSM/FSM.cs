@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using System.Linq;
 using System.Collections.Generic;
-using FullSerializer;
 
-namespace FSM
+namespace Elurnity.FSM
 {
     [Serializable]
     public class FSM : State
@@ -11,46 +10,60 @@ namespace FSM
         public List<State> states = new List<State>();
         public List<Param> parameters = new List<Param>();
         public Dictionary<State, List<Transition>> transitions = new Dictionary<State, List<Transition>>();
-
         public State defaultState { get; set; }
 
-        public IEnumerable<State> state(string name)
+        public IEnumerable<State> States(string name)
         {
             return
                 from state in states
                 where states != null && state.name.ToLower() == name.ToLower()
                 select state;
         }
-        
-        public IEnumerable<Param> param(string name)
+
+        public IEnumerable<Param> Params(string name)
         {
             return
                 from p in parameters
                 where p != null && p.name.ToLower() == name.ToLower()
                 select p;
         }
-        
-        public IEnumerable<Param<T>> param<T>(string name)
+
+        public IEnumerable<Param<T>> Params<T>(string name)
         {
             return
-                from p in param(name)
+                from p in Params(name)
                 where p is Param<T>
                 select p as Param<T>;
         }
-        
-        public IEnumerable<Trigger> trigger(string name)
+
+        public IEnumerable<Trigger> Triggers(string name)
         {
             return
                 from t in triggers
                 where t.name.ToLower() == name.ToLower()
                 select t;
         }
-        
+
+        public State State(string name)
+        {
+            return States(name).FirstOrDefault();
+        }
+
+        public Param Param(string name)
+        {
+            return Params(name).FirstOrDefault();
+        }
+
+        public Trigger Trigger(string name)
+        {
+            return Triggers(name).FirstOrDefault();
+        }
+
         public IEnumerable<State> anyStates
         {
             get
             {
-                return state("any");
+                return States("any");
             }
         }
 
@@ -58,7 +71,7 @@ namespace FSM
         {
             get
             {
-                return state("enter");
+                return States("enter");
             }
         }
 
@@ -66,10 +79,10 @@ namespace FSM
         {
             get
             {
-                return state("exit");
+                return States("exit");
             }
         }
-        
+
         public IEnumerable<Trigger> triggers
         {
             get
@@ -117,9 +130,9 @@ namespace FSM
                         transition.exit();
                     }
                 }
-                
+
                 _currentState = value;
-                
+
                 if (_currentState != null)
                 {
                     _currentState.enter();
@@ -136,8 +149,7 @@ namespace FSM
         {
             update();
         }
-        
-        [fsIgnore]
+
         public int maxVisitsPerUpdate = 1000;
         private Dictionary<State, int> visitedStates = new Dictionary<State, int>();
         private bool visitedBelowMax(State state)
@@ -160,16 +172,16 @@ namespace FSM
         public override void update()
         {
             updateRequested = true;
-            
+
             if (updateLocked)
             {
                 return;
             }
-            
+
             visitedStates.Clear();
             updateLocked = true;
             bool switched = false;
-            
+
             do
             {
                 updateRequested = false;
@@ -186,7 +198,7 @@ namespace FSM
                         }
                     }
                 }
-                
+
                 if (!switched)
                 {
                     foreach (var state in anyStates)
@@ -197,13 +209,13 @@ namespace FSM
                         }
                     }
                 }
-                
+
                 if (!switched && currentState == null && defaultState != null)
                 {
                     currentState = defaultState;
                     switched = true;
                 }
-                
+
                 if (!switched)
                 {
                     switched = evalTransitions(currentState);
@@ -213,7 +225,7 @@ namespace FSM
                 {
                     break;
                 }
-                
+
                 if (currentState != null)
                 {
                     currentState.update();
@@ -241,7 +253,7 @@ namespace FSM
                 }
             }
 
-            
+
             if (transition != null)
             {
                 foreach (Trigger trigger in triggers)
