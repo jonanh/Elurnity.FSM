@@ -3,7 +3,7 @@
 using Serialization;
 using Events;
 
-namespace FSM
+namespace Elurnity.FSM
 {
     public class FSMRunner : MonoBehaviour
     {
@@ -31,7 +31,7 @@ namespace FSM
                     
                     injector.inject(fsm, container);
 
-                    fsm.enter();
+                    fsm.Enter();
                 }
             }
         }

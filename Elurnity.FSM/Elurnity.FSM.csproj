@@ -37,8 +37,10 @@
     <Compile Include="Transitions\Transition.cs" />
     <Compile Include="Params\Param.cs" />
     <Compile Include="FSM.cs" />
-    <Compile Include="IFSM.cs" />
     <Compile Include="States\DelegateState.cs" />
+    <Compile Include="Context.cs" />
+    <Compile Include="FSMQuery.cs" />
+    <Compile Include="ExecutionContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Conditions\" />

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace FSM
+namespace Elurnity.FSM
 {
     public class FSMAssetRunner : FSMRunner
     {

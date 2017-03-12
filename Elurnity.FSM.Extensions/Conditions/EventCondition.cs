@@ -3,7 +3,7 @@ using Elurnity.EventSystem;
 
 namespace Elurnity.FSM
 {
-    public class EventCondition<T> : Condition, IFSM where T : Event
+    public class EventCondition<T> : Condition where T : Event
     {
         public string eventName;
         private bool _listened = false;

@@ -6,15 +6,15 @@ namespace Elurnity.FSM
     {
         public string name;
 
-        public virtual void enter()
+        public virtual void Enter(Context context)
         {
         }
 
-        public virtual void update()
+        public virtual void Update(Context context)
         {
         }
 
-        public virtual void exit()
+        public virtual void Exit(Context context)
         {
         }
     }

@@ -14,7 +14,7 @@ namespace Elurnity.FSM
         public abstract void Exit();
     }
 
-    public abstract class ParamCondition<T> : Condition, IFSM
+    public abstract class ParamCondition<T> : Condition
     {
         public string param;
 
@@ -33,7 +33,7 @@ namespace Elurnity.FSM
         public FSM fsm { get; set; }
     }
 
-    public class Condition<T> : ParamCondition<T>, IFSM where T : IComparable
+    public class Condition<T> : ParamCondition<T> where T : IComparable
     {
         public enum ComparisonType { Equals, NotEquals, GreaterOrEqualThan, GreaterThan, LessThan, LessOrEqualThan }
 

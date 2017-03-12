@@ -19,7 +19,7 @@ namespace Elurnity.FSM
             return false;
         }
 
-        public void enter()
+        public void Enter()
         {
             foreach (var condition in conditions)
             {
@@ -27,7 +27,7 @@ namespace Elurnity.FSM
             }
         }
 
-        public void exit()
+        public void Exit()
         {
             foreach (var condition in conditions)
             {

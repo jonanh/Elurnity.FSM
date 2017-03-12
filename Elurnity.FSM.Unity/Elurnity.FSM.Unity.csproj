@@ -34,6 +34,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FSMAssetRunner.cs" />
+    <Compile Include="FSMRunner.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Elurnity.FSM\Elurnity.FSM.csproj">

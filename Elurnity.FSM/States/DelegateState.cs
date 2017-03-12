@@ -1,34 +1,34 @@
-﻿using System;
+using System;
 
 namespace Elurnity.FSM
 {
     public class DelegateState : State
     {
-        public Action onEnter;
-        public Action onUpdate;
-        public Action onExit;
+        public Action<Context> onEnter;
+        public Action<Context> onUpdate;
+        public Action<Context> onExit;
 
-        public override void enter()
+        public override void Enter(Context context)
         {
             if (onEnter != null)
             {
-                onEnter();
+                onEnter(context);
             }
         }
 
-        public override void update()
+        public override void Update(Context context)
         {
             if (onUpdate != null)
             {
-                onUpdate();
+                onUpdate(context);
             }
         }
 
-        public override void exit()
+        public override void Exit(Context context)
         {
             if (onExit != null)
             {
-                onExit();
+                onExit(context);
             }
         }
     }

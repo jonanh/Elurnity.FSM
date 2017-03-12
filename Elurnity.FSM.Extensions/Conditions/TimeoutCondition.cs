@@ -29,7 +29,7 @@ namespace Elurnity.FSM
             _timeout -= time;
             if (Eval())
             {
-                fsm.update();
+                fsm.Update();
             }
             return false;
         }
